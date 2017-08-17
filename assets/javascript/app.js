@@ -1,5 +1,5 @@
 $(document).ready(function() {
-// Create a function that creates the start button and initial screen
+
 
 function initialScreen() {
 	startScreen = "<p class='text-center main-button-container'><a class='btn btn-primary btn-lg btn-block start-button' href='#' role='button'>Start Quiz</a></p>";
@@ -8,59 +8,56 @@ function initialScreen() {
 
 initialScreen();
 
-//Create a function, generateHTML(), that is triggered by the start button, and generates the HTML seen on the project video...
+
 
 $("body").on("click", ".start-button", function(event){
-	event.preventDefault();  // added line to test issue on GitHub Viewer
+	event.preventDefault();  
 	generateHTML();
 
 	timerWrapper();
 
-}); // Closes start-button click
+}); 
 
 $("body").on("click", ".answer", function(event){
-	//answeredQuestion = true;
 	
 	selectedAnswer = $(this).text();
 	if(selectedAnswer === correctAnswers[questionCounter]) {
-		//alert("correct");
 
 		clearInterval(theClock);
 		generateWin();
 	}
 	else {
-		//alert("wrong answer!");
 		clearInterval(theClock);
 		generateLoss();
 	}
-}); // Close .answer click
+}); 
 
 $("body").on("click", ".reset-button", function(event){
 	
 	resetGame();
-}); // Closes reset-button click
+}); 
 
-});  //  Closes jQuery wrapper
+}); 
 
 function generateLossDueToTimeOut() {
 	unansweredTally++;
 	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='img/x.png'>";
 	$(".mainArea").html(gameHTML);
-	setTimeout(wait, 1000);  //  change to 4000 or other amount
+	setTimeout(wait, 1000);  
 }
 
 function generateWin() {
 	correctTally++;
 	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>";
 	$(".mainArea").html(gameHTML);
-	setTimeout(wait, 1000);  //  change to 4000 or other amount
+	setTimeout(wait, 1000);  
 }
 
 function generateLoss() {
 	incorrectTally++;
 	gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: "+ correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='img/x.png'>";
 	$(".mainArea").html(gameHTML);
-	setTimeout(wait, 1000); //  change to 4000 or other amount
+	setTimeout(wait, 1000); 
 }
 
 function generateHTML() {
@@ -113,7 +110,7 @@ var startScreen;
 var gameHTML;
 var counter = 30;
 var questionArray = ["What is the capital of Vatican City?", "What is the capital of Monaco?", "What is the capital of Malta?", "What is the capital of Bahrain?", "What is the capital of Dominica?"];
-var answerArray = [["Vatican City", "Catholic", "Vatican", "Monaco"], ["Liechtenstein","Monaco-ville","lisbon","Brussels"], ["Tainan City", "Taichung", "Valletta", "Hsinchu"], ["Kyoto","Hiroshima","Manama","Osaka"], ["Hong Kong", "Macau", "Shanghai", "Roseau"]];
+var answerArray = [["Vatican City", "Catholic", "Vatican", "Monaco"], ["Liechtenstein","Monaco-ville","lisbon","Brussels"], ["Andorra", "Managua", "Valletta", "Shetan"], ["Dubai","Riyadh","Manama","Kuwait"], ["Havana", "Santo Domingo", "Kingston", "Roseau"]];
 var correctAnswers = ["A. Vatican City", "B. Monaco-ville", "C. Valletta", "C. Manama", "D. Roseau"];
 var questionCounter = 0;
 var selecterAnswer;
